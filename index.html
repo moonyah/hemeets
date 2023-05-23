@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeMeets</title>
+</head>
+
+<body onload="showClock()">
+    <div class="video-container">
+        <video muted autoplay loop> <!--동영상 자동 시작, 반복-->
+            <source src="videos/concert.mp4" type="video/mp4">
+            <strong>Your browser does not support the video tag.</strong>
+          </video>
+    </div>
+    <div id="container" class="hemeets-windows">
+        <header>
+            <div class="band-name">HEMEETS</div>
+            <div class="util">
+                <div class="sns-list">
+                    <ul>
+                        <li><a href="https://www.youtube.com/@HeMeets_official" rel="noopener noreferrer"
+                                target="_blank"><img src="imgs/windows/pc/icon-youtube.png" alt="youtube"></a></li>
+                        <li><a href="https://www.instagram.com/hemeets_official/" rel="noopener noreferrer"
+                                target="_blank"><img src="imgs/windows/pc/icon-instagram.png" alt="instagram"></a></li>
+                        <li><a href="https://www.facebook.com/hemeets/" rel="noopener noreferrer" target="_blank"><img
+                                    src="imgs/windows/pc/icon-facebook.png" alt="facebook"></a></li>
+                    </ul>
+                </div>
+                <div class="date-time">
+                    <div class="wrap">
+                        <div class="date" id="current_date">
+                        </div>
+                        <div class="time" id="clock"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <br>
+            <br>
+            <br>
+            <!--
+            <div class="btn-photo-folder">PHOTOS</div>
+            <div class="btn-mv-folder">MV</div>
+            <div class="btn-letter">LETTER</div>
+            <div class="btn-test">TEST</div>
+            -->
+        </main>
+    </div>
+    <script>
+        date = new Date();
+        year = date.getFullYear();
+        month = date.getMonth() + 1;
+        day = date.getDate();
+        document.getElementById("current_date").innerHTML = month + "/" + day + "/" + year;
+        function showClock() {
+            var currentDate = new Date();
+            var clock = document.getElementById('clock');
+            var msg = " ";
+            if (currentDate.getHours() > 12) {      //시간이 12보다 크다면 오후 아니면 오전
+                msg += "PM ";
+                msg += currentDate.getHours() - 12 + ":";
+            }
+            else {
+                msg += "AM ";
+                msg += currentDate.getHours() + ":";
+            }
+
+            msg += currentDate.getMinutes() + ":";
+            msg += currentDate.getSeconds();
+
+            clock.innerText = msg;
+
+            setTimeout(showClock, 1000);  //1초마다 갱신
+        }
+    </script>
+</body>
+
+</html>
