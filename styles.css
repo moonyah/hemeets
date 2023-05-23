@@ -96,3 +96,16 @@ body {
 .hemeets-windows header>.util>.date-time>.wrap>.date {
     margin-right: 10px;
 }
+
+
+.folder-container{
+    display: block;
+    position: absolute;
+    right: 150px;
+    top: 200px;
+}
+.folder-container>.folder>li{
+    font-size: 30px;
+    color: rgb(227, 236, 243);
+    margin-bottom: 30px;
+}
