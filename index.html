@@ -60,20 +60,27 @@
             var msg = " ";
             if (currentDate.getHours() > 12) {      //시간이 12보다 크다면 오후 아니면 오전
                 msg += "PM ";
-                msg += currentDate.getHours() - 12 + ":";
+                msg += padZero(currentDate.getHours()) + ":";
             }
             else {
                 msg += "AM ";
-                msg += currentDate.getHours() + ":";
+                msg += padZero(currentDate.getHours()) + ":";
             }
 
-            msg += currentDate.getMinutes() + ":";
-            msg += currentDate.getSeconds();
+            msg += padZero(currentDate.getMinutes()) + ":";
+            msg += padZero(currentDate.getSeconds());
 
             clock.innerText = msg;
 
             setTimeout(showClock, 1000);  //1초마다 갱신
         }
+
+        // 숫자를 두 자리로 표시하는 함수
+        function padZero(num) {
+        return num.toString().padStart(2, '0');
+        }
+
+        showClock();
     </script>
 </body>
 
