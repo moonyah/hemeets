@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles.css" type="text/css">
@@ -7,16 +8,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HeMeets</title>
 </head>
+
 <body onload="showClock()">
     <div class="video-container">
-        <video muted autoplay loop> <!--동영상 자동 시작, 반복-->
+        <video muted autoplay loop>
+            <!--동영상 자동 시작, 반복-->
             <source src="videos/concert.mp4" type="video/mp4">
             <strong>Your browser does not support the video tag.</strong>
-          </video>
+        </video>
     </div>
     <div id="container" class="hemeets-windows">
         <header>
-            <div class="band-name">HEMEETS</div>
+            <div class="band-name" style="cursor:pointer">HEMEETS</div>
             <div class="util">
                 <div class="sns-list">
                     <ul>
@@ -40,13 +43,29 @@
         <main>
             <div class="folder-container">
                 <ul class="folder">
-                    <li class="btn-photo-folder">PHOTOS</li>
-                    <li class="btn-mv-folder">MV</li>
-                </div>
+                    <li class="btn-photo-folder" id="photos_modal" style="cursor:pointer">PHOTOS</li>
+                    <li class="btn-mv-folder" style="cursor:pointer">MV</li>
             </div>
-            <!-- <div class="btn-letter">LETTER</div>
+    </div>
+    <!-- <div class="btn-letter">LETTER</div>
             <div class="btn-test">TEST</div> -->
-        </main>
+
+    <div id="modal" class="modal-overlay">
+        <div class="modal-window">
+            <div class="title">
+                <h2>HEMEETS PHOTOS</h2>
+            </div>
+            <div class="close-area">X</div>
+            <div class="content">
+                <img src="imgs/hemeets-photo.png" alt="hemeets photo">
+                <p>🎤 보컬 오샘</p>
+                <p>🎸 베이스 정다운</p>
+                <p>🥁 드럼 김성하</p>
+                <p>🎸 기타 오승규</p>
+            </div>
+        </div>
+    </div>
+    </main>
     </div>
     <script>
         date = new Date();
@@ -54,15 +73,15 @@
         month = date.getMonth() + 1;
         day = date.getDate();
         document.getElementById("current_date").innerHTML = month + "/" + day + "/" + year;
+
         function showClock() {
             var currentDate = new Date();
             var clock = document.getElementById('clock');
             var msg = " ";
-            if (currentDate.getHours() > 12) {      //시간이 12보다 크다면 오후 아니면 오전
+            if (currentDate.getHours() > 12) { //시간이 12보다 크다면 오후 아니면 오전
                 msg += "PM ";
                 msg += padZero(currentDate.getHours()) + ":";
-            }
-            else {
+            } else {
                 msg += "AM ";
                 msg += padZero(currentDate.getHours()) + ":";
             }
@@ -72,15 +91,27 @@
 
             clock.innerText = msg;
 
-            setTimeout(showClock, 1000);  //1초마다 갱신
+            setTimeout(showClock, 1000); //1초마다 갱신
         }
 
         // 숫자를 두 자리로 표시하는 함수
         function padZero(num) {
-        return num.toString().padStart(2, '0');
+            return num.toString().padStart(2, '0');
         }
 
         showClock();
+
+
+        const modal = document.getElementById("modal")
+        const btnModal = document.getElementById("photos_modal")
+        btnModal.addEventListener("click", e => {
+            modal.style.display = "flex"
+        })
+
+        const closeBtn = modal.querySelector(".close-area")
+        closeBtn.addEventListener("click", e => {
+            modal.style.display = "none"
+        })
     </script>
 </body>
 
